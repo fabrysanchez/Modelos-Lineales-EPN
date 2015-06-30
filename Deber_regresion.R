@@ -25,7 +25,7 @@ hist(res1,20)
 mean(res1)
 data3<-data.frame(res1)
 qqnorm(res1)
-qqline(res1,col="red")
+qqline(res1,col="blue")
 plot(res1,predicciones)
 plot(data[,1],data[,2])
 
@@ -34,7 +34,7 @@ utilidad1<-data[,"Utilidad"]-a
 ventas1<-data[,"Ventas"]-b
 regresion2<-lm(utilidad1 ~ ventas1)
 summary(regresion2)
-anova1<-aov(regresion2)
+anova2<-aov(regresion2)
 summary(anova2)
 confint(regresion2,level=0.95)
 res2<-regresion2[["residuals"]]
