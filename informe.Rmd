@@ -20,7 +20,7 @@ Iniciamos cargando el archivo que contiene las varibles a utilizar, el paquete _
 leer archivos desde excel sin la necesidad de instalar complementos.
 
 ```{r,echo=TRUE,eval=TRUE}
-options(warn=-1)
+install.packages("readxl", repos="http://cran.us.r-project.org")
 library(readxl)
 data <- read_excel("data_rls_uti.xlsx",sheet=1,na="")
 str(data)
@@ -41,7 +41,7 @@ en archivos:
 En nuestro caso tenemos lo siguiente:
 
 ```{r,echo=TRUE,eval=TRUE}
-install.packages("DT")
+install.packages("DT", repos="http://cran.us.r-project.org")
 library(DT)
 datatable(data)
 ```
@@ -51,14 +51,14 @@ Ajustando un modelo de regresión para las variables `r names(data)[1]` y `r nam
 la función `lm()` obtenemos el siguiente resultado:
 
 ```{r,echo=TRUE,eval=TRUE}
-#r,echo=FALSE sirve para motrar o no las lineas de codigo
+#r,echo=FALSE sirve para mostrar o no las lineas de codigo
 #eval si se corre o no el programa
 reg <- lm(Utilidad~Ventas, data)
 summary(reg)
 #names(summary(reg))
 #summary(reg)[4]
 #str(summary(reg)[4])
-# summary(reg)[[4]][1,2]
+#summary(reg)[[4]][1,2]
 #[1] 282.6954
 #summary(reg)$coefficients[1,2]
 #[1] 282.6954
@@ -94,7 +94,7 @@ Realizando la tabla __ANOVA__ tenemos los siguientes resultados:
 anova <- aov(reg)
 summary(anova)[[1]]
 
-#> summary(anova)[[1]][1,4]
+# summary(anova)[[1]][1,4]
 #[1] 559.9328
 ```
 
@@ -130,4 +130,3 @@ plot(data[,"Ventas"],data[,"Utilidad"])
 plot(residuo,prediccion)
 plot(residuo,data[,"Ventas"])
 ```
-
